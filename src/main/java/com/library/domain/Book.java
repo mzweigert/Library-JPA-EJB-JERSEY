@@ -1,6 +1,7 @@
 package com.library.domain;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
         @NamedQuery(name = "book.byTitle", query = "Select b from Book b where b.title = :title")
 })
 @Table(name = "Book")
+@XmlRootElement
 public class Book implements Serializable
 {
     @Id

@@ -1,0 +1,14 @@
+body
+{
+    background: url("resources/background.png") no-repeat center center fixed;;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.main-caption
+{
+    color:green;
+    font-family: 'Pacifico', cursive;
+    font-size:92px;
+}

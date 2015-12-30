@@ -6,12 +6,14 @@ import com.library.domain.Author;
 import com.library.domain.Book;
 
 import javax.ejb.Stateless;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
 
 @Stateless
+@Named("authorManager")
 public class AuthorManager implements AuthorDAO
 {
 
@@ -52,7 +54,8 @@ public class AuthorManager implements AuthorDAO
 
     public void deleteAuthor(Author author)
     {
-        em.remove(author);
+        Author temporary = em.find(Author.class, author.getIdAuthor());
+        em.remove(temporary);
     }
 
     public Author addAuthor(Author author)

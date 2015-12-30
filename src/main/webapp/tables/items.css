@@ -1,0 +1,41 @@
+body
+{
+   background: url("../resources/background.png") no-repeat center center fixed;
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
+}
+@media screen and (min-width: 768px)
+{
+    .jumbotron
+    {
+        padding-bottom: 10px;
+    }
+}
+.jumbotron
+{
+    margin-left:auto;
+    margin-right:auto;
+    width:50%;
+
+}
+.table th
+{
+    text-align:center;
+}
+.input-group-addon
+{
+    width: 0%;
+    cursor: pointer;
+}
+.input-group .form-control
+{
+    display:inline;
+    margin-bottom: 5;
+}
+.alert
+{
+    margin-bottom: 0;
+    padding: 5px;
+}
