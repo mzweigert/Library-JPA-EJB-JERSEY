@@ -1,4 +1,4 @@
-function doAjax(url, type, dataType, data, reloadPage)
+function doAjax(url, type, dataType, data)
 {
 
     return $.ajax

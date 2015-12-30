@@ -2,6 +2,7 @@ package com.library.service;
 
 
 import com.library.BookDAO;
+import com.library.domain.Author;
 import com.library.domain.Book;
 
 import javax.ejb.Stateless;
@@ -55,7 +56,8 @@ public class BookManager implements BookDAO
 
     public void deleteBook(Book book)
     {
-        em.remove(book);
+        Book temporary = em.find(Book.class, book.getIdBook());
+        em.remove(temporary);
     }
 
     public Book addBook(Book book)

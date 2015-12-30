@@ -1,9 +1,3 @@
-checkUserIsLogin('../login').then(function(response)
-{
-    if(response == false)
-        document.location.href='../index.html';
-
-});
 $(document).ready(function()
 {
     var idBook,
@@ -18,7 +12,7 @@ $(document).ready(function()
 
     $( '.form-date' ).datetimepicker( { format: 'YYYY-MM-DD' } );
 
-    doAjaxGet('getAllBooks', 'json').then(
+    doAjax('../rest/book/getAllBooks','GET', 'JSON', '').then(
     function(response)
     {
         makeRowsInTable(response, $tbody);
@@ -33,7 +27,7 @@ $(document).ready(function()
     {
         if(typeof idBook != null && typeof idBook != 'undefined')
         {
-            doAjaxPost('deleteBook', 'json', {idBook: idBook} );
+            doAjax('../rest/book/deleteBook', 'DELETE', '', {idBook: idBook} ).success(function(response){ location.reload(true); });
         }
     });
 
@@ -83,7 +77,8 @@ $(document).ready(function()
             }
             else
             {
-                doAjaxPost('updateBook', 'json', {idBook: newIdBook, title: newTitle, relaseDate: newRelaseDate, relase: newRelase});
+                doAjax('../rest/book/updateBook'', 'PUT', '', {idBook: newIdBook, title: newTitle, relaseDate: newRelaseDate, relase: newRelase})
+                    .success(function(response){ location.reload(true); });
                 $('#update-modal').modal('hide');
             }
             e.preventDefault();
@@ -115,7 +110,8 @@ $(document).ready(function()
         }
         else
         {
-        	doAjaxPost('addBook', 'json', { title: title, relaseDate: relaseDate, relase: relase});
+        	doAjax('../rest/book/addBook', 'POST', '', { title: title, relaseDate: relaseDate, relase: relase})
+        	    .success(function(response){ location.reload(true); });
         }
     });
 });

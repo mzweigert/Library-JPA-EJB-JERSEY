@@ -1,5 +1,7 @@
 package com.library.domain;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
@@ -27,9 +29,11 @@ public class Book implements Serializable
     private int relase;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "book")
+    @JsonIgnore
     private List<Hiring> hirings;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "books")
+    @JsonIgnore
     private List<Author> authors;
 
     public Book()

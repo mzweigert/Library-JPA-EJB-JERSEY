@@ -3,8 +3,6 @@ package com.library.domain;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.List;
 
