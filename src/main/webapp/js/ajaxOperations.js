@@ -10,7 +10,10 @@ function doAjax(url, type, dataType, data)
         error: function (errorThrown)
         {
             console.log(errorThrown);
-            showIfError({status: errorThrown.status, message: errorThrown.statusText });
+            if(errorThrown.status == 400)
+                showIfError({status: errorThrown.status, message: errorThrown.responseText });
+            else
+                showIfError({status: errorThrown.status, message: errorThrown.statusText });
         }
     });
 }

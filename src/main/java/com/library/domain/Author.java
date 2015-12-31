@@ -23,10 +23,10 @@ public class Author implements Serializable
     @Column(nullable = false)
     private String surname;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "Author_Book", joinColumns = {@JoinColumn(name = "idAuthor")}, inverseJoinColumns = {@JoinColumn(name = "idBook")})
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "author")
     @JsonIgnore
-    private List<Book> books = null;
+    private List<BooksAuthors> booksAuthors = null;
 
     public Author()
     {
@@ -69,12 +69,12 @@ public class Author implements Serializable
         this.idAuthor = idAuthor;
     }
 
-    public List<Book> getBooks() {
-        return books;
+    public List<BooksAuthors> getBooksAuthors() {
+        return booksAuthors;
     }
 
-    public void setBooks(List<Book> books) {
-        this.books = books;
+    public void setBooksAuthors(List<BooksAuthors> booksAuthors) {
+        this.booksAuthors = booksAuthors;
     }
 
     @Override
@@ -107,7 +107,7 @@ public class Author implements Serializable
         int result = (int) (getIdAuthor() ^ (getIdAuthor() >>> 32));
         result = 31 * result + getName().hashCode();
         result = 31 * result + getSurname().hashCode();
-        result = 31 * result + getBooks().hashCode();
+        result = 31 * result + getBooksAuthors().hashCode();
         return result;
     }
 }

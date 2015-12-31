@@ -4,6 +4,7 @@ package com.library.service;
 import com.library.BookDAO;
 import com.library.domain.Author;
 import com.library.domain.Book;
+import org.hibernate.Hibernate;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -27,17 +28,17 @@ public class BookManager implements BookDAO
         return em.find(Book.class, book.getIdBook());
     }
 
-    public Book getBookByIdWithAuthors(Book book)
+    public Book getBookByIdWithBooksAuthors(Book book)
     {
         Book bookWithAuthors = em.find(Book.class, book.getIdBook());
-        bookWithAuthors.getAuthors();
+        Hibernate.initialize(bookWithAuthors.getBooksAuthors());
         return bookWithAuthors;
     }
 
     public Book getBookByIdWithHirings(Book book)
     {
         Book bookWithHirings = em.find(Book.class, book.getIdBook());
-        bookWithHirings.getHirings();
+        Hibernate.initialize(bookWithHirings.getHirings());
 
         return bookWithHirings;
     }
@@ -56,8 +57,7 @@ public class BookManager implements BookDAO
 
     public void deleteBook(Book book)
     {
-        Book temporary = em.find(Book.class, book.getIdBook());
-        em.remove(temporary);
+        em.remove(em.getReference(Book.class, book.getIdBook()));
     }
 
     public Book addBook(Book book)

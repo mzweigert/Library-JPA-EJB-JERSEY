@@ -1,9 +1,3 @@
-checkUserIsLogin('../login').then(function(response)
-{
-    if(response == false)
-        document.location.href='../index.html';
-
-});
 $(document).ready(function()
 {
      var idBooksAuthors,
@@ -12,20 +6,20 @@ $(document).ready(function()
          $inputsUpdate = $('#inputs-update').children(),
          $tbody = $('#books-authors-tbody');
 
-     doAjaxGet('getAllBooksAuthors', 'json').then(
+     doAjax('../rest/booksAuthors/getAllBooksAuthors', 'GET', 'JSON', '').then(
      function(response)
      {
          makeRowsInTable(response, $tbody);
      });
 
-     doAjaxGet('getAllAuthors', 'json').then(
+     doAjax('../rest/author/getAllAuthors', 'GET', 'JSON', '').then(
      function(response)
      {
          createOptionSelect($('#select-author-add'), response);
          createOptionSelect($inputsUpdate.eq(1), response);
      });
 
-     doAjaxGet('getAllBooks', 'json').then(
+     doAjax('../rest/book/getAllBooks',  'GET', 'JSON', '').then(
      function(response)
      {
          createOptionSelect($('#select-book-add'), response);
@@ -41,7 +35,8 @@ $(document).ready(function()
      {
          if(typeof idBooksAuthors != null && typeof idBooksAuthors != 'undefined' )
          {
-             doAjaxPost('deleteBooksAuthors', 'json', {idBooksAuthors: idBooksAuthors});
+             doAjax('../rest/booksAuthors/deleteBooksAuthors', 'DELETE', '', {idBooksAuthors: idBooksAuthors})
+                .success(function(response){ location.reload(true); });
          }
      });
 
@@ -68,7 +63,8 @@ $(document).ready(function()
          {
              if(idAuthor != newIdAuthor || newIdBook != idBook )
              {
-                 doAjaxPost('updateBooksAuthors', 'json', {idBooksAuthors: newIdBooksAuthors, idAuthor: newIdAuthor, idBook: newIdBook });
+                 doAjax('../rest/booksAuthors/updateBooksAuthors', 'PUT', '', {idBooksAuthors: newIdBooksAuthors, idAuthor: newIdAuthor, idBook: newIdBook })
+                    .success(function(response){ location.reload(true); });
              }
              $('#update-modal').modal('hide');
              e.preventDefault();
@@ -94,7 +90,8 @@ $(document).ready(function()
      	}
      	else
      	{
-     		doAjaxPost('addBooksAuthors', 'json', {idAuthor: idAuthor, idBook: idBook});
+     		doAjax('../rest/booksAuthors/addBooksAuthors', 'POST', '', {idAuthor: idAuthor, idBook: idBook})
+     		    .success(function(response){ location.reload(true); });
      	}
      });
 });

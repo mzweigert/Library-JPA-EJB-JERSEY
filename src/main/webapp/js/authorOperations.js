@@ -21,7 +21,7 @@ $(document).ready(function()
     {
         if(typeof null != idAuthor && typeof 'undefined' != idAuthor )
         {
-            doAjax('../rest/author/deleteAuthor', 'DELETE', '', {idAuthor: idAuthor}).success(function(response){ location.reload(true); });
+            doAjax('../rest/author/deleteAuthor', 'DELETE', 'TEXT_PLAIN', {idAuthor: idAuthor}).success(function(response){ location.reload(true); });
         }
     });
     $tbody.on('click', '.update-row', function()

@@ -1,9 +1,3 @@
-checkUserIsLogin('../login').then(function(response)
-{
-    if(response == false)
-        document.location.href='../index.html';
-
-});
 $(document).ready(function()
 {
     var idHiring,

@@ -3,17 +3,16 @@ package com.library.service;
 
 import com.library.AuthorDAO;
 import com.library.domain.Author;
-import com.library.domain.Book;
+import org.hibernate.Hibernate;
 
 import javax.ejb.Stateless;
-import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
 
 @Stateless
-@Named("authorManager")
+
 public class AuthorManager implements AuthorDAO
 {
 
@@ -28,23 +27,15 @@ public class AuthorManager implements AuthorDAO
     {
         return em.find(Author.class, author.getIdAuthor());
     }
-    public Author getAuthorByIdWithBooks(Author author)
+    public Author getAuthorByIdWithBooksAuthors(Author author)
     {
-        Author authorWithBooks = em.find(Author.class, author.getIdAuthor());
-        authorWithBooks.getBooks();
-        return authorWithBooks;
-
+        author = em.find(Author.class, author.getIdAuthor());
+        Hibernate.initialize(author.getBooksAuthors());
+        return author;
     }
     public List<Author> getAuthorBySurname(String surname)
     {
         return em.createNamedQuery("author.bySurname").setParameter("surname", surname).getResultList();
-    }
-
-    public List<Book> getAuthorBooks(Author author)
-    {
-        Author authorWithBooks = em.find(Author.class, author.getIdAuthor());
-        authorWithBooks.getBooks();
-        return authorWithBooks.getBooks();
     }
 
     public Author updateAuthor(Author author)
@@ -54,8 +45,7 @@ public class AuthorManager implements AuthorDAO
 
     public void deleteAuthor(Author author)
     {
-        Author temporary = em.find(Author.class, author.getIdAuthor());
-        em.remove(temporary);
+        em.remove(em.getReference(Author.class, author.getIdAuthor()));
     }
 
     public Author addAuthor(Author author)

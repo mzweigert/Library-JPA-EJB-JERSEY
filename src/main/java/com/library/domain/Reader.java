@@ -1,5 +1,7 @@
 package com.library.domain;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
@@ -27,6 +29,7 @@ public class Reader implements Serializable
     private int extraPoints;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "reader")
+    @JsonIgnore
     private List<Hiring> hirings;
 
     public Reader()

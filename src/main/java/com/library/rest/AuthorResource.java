@@ -2,11 +2,9 @@ package com.library.rest;
 
 import com.library.AuthorDAO;
 import com.library.domain.Author;
-import com.library.service.AuthorManager;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -52,15 +50,19 @@ public class AuthorResource
 
     @DELETE
     @Path("/deleteAuthor")
+    @Produces(MediaType.TEXT_PLAIN)
     public Response deleteAuthor(@FormParam("idAuthor") long idAuthor)
     {
         Author author = new Author();
         author.setIdAuthor(idAuthor);
-        //sprawdzic czy posiada ksiazki bo pewnie wyrzuci bledy
+
+        if(authorManager.getAuthorByIdWithBooksAuthors(author).getBooksAuthors().size() > 0)
+            return Response.status(Response.Status.BAD_REQUEST).entity("Author has relation in BookAuthors table").build();
+
 
         authorManager.deleteAuthor(author);
-
         return Response.status(Response.Status.OK).build();
+
     }
 
 }

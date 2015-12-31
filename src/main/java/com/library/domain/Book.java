@@ -32,9 +32,9 @@ public class Book implements Serializable
     @JsonIgnore
     private List<Hiring> hirings;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "books")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "book")
     @JsonIgnore
-    private List<Author> authors;
+    private List<BooksAuthors> booksAuthors;
 
     public Book()
     {
@@ -99,14 +99,12 @@ public class Book implements Serializable
         this.hirings = hirings;
     }
 
-    public List<Author> getAuthors()
-    {
-        return authors;
+    public List<BooksAuthors> getBooksAuthors() {
+        return booksAuthors;
     }
 
-    public void setAuthors(List<Author> authors)
-    {
-        this.authors = authors;
+    public void setBooksAuthors(List<BooksAuthors> booksAuthors) {
+        this.booksAuthors = booksAuthors;
     }
 
     @Override
@@ -144,7 +142,7 @@ public class Book implements Serializable
         result = 31 * result + getRelaseDate().hashCode();
         result = 31 * result + getRelase();
         result = 31 * result + getHirings().hashCode();
-        result = 31 * result + getAuthors().hashCode();
+        result = 31 * result + getBooksAuthors().hashCode();
         return result;
     }
 }

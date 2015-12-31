@@ -77,7 +77,7 @@ $(document).ready(function()
             }
             else
             {
-                doAjax('../rest/book/updateBook'', 'PUT', '', {idBook: newIdBook, title: newTitle, relaseDate: newRelaseDate, relase: newRelase})
+                doAjax('../rest/book/updateBook', 'PUT', '', {idBook: newIdBook, title: newTitle, relaseDate: newRelaseDate, relase: newRelase})
                     .success(function(response){ location.reload(true); });
                 $('#update-modal').modal('hide');
             }

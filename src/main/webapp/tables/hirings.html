@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+   <head>
+        <meta charset="UTF-8">
+        <title>Hirings</title>
+
+        <link rel="stylesheet" href="../libraries/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../libraries/bootstrap/css/bootstrap-datetimepicker.css">
+        <link rel="stylesheet" href='items.css'>
+
+        <script src="../libraries/jquery/jquery-2.1.4.js"></script>
+        <script src="../libraries/moment/moment.js"></script>
+
+        <script src="../libraries/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../libraries/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+
+        <script src="../js/ajaxOperations.js"></script>
+        <script src="../js/hiringOperations.js"></script>
+   </head>
+   <body>
+      <nav class="navbar navbar-default">
+         <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+               <ul class="nav navbar-nav navbar-right white">
+                  <li class="dropdown">
+                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Library <span class="caret"></span></a>
+                     <ul class="dropdown-menu">
+                        <li><a href="../index.html">Main Page</a></li>
+                        <li><a href="authors.html">Authors</a></li>
+                        <li><a href="books.html">Books</a></li>
+                        <li><a href="readers.html">Readers</a></li>
+                        <li><a href="booksAuthors.html">Books-Authors</a></li>
+                        <li><a href="hirings.html">Hirings</a></li>
+                     </ul>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </nav>
+
+      <div class="jumbotron">
+         <div class="container text-center">
+            <table class="table table-bordered">
+               <thead>
+                  <tr>
+                     <th>ID</th>
+                     <th>Book</th>
+                     <th>Reader</th>
+                     <th>Hire date</th>
+                     <th></th>
+                     <th></th>
+                  </tr>
+               </thead>
+               <tbody id="hiring-tbody">
+                  <tr>
+                     <th>
+                         <div class="input-group text-center">
+                             <input type="submit" class="btn btn-success" id="add-btn" value="Add" />
+                         </div>
+                     </th>
+                     <th>
+                         <div class="input-group text-center">
+                             <select id="select-book-add" class="form-control">
+                                 <option value="">Select book...</option>
+                             </select>
+                         </div>
+                     </th>
+                     <th>
+                         <div class="input-group text-center">
+                             <select id="select-reader-add" class="form-control">
+                                 <option value="">Select reader...</option>
+                             </select>
+                         </div>
+                     </th>
+                     <th>
+                         <div class="input-group text-center">
+                             <input type="text" class="form-control form-date" id="hire-date" placeholder="hire date"/>
+                         </div>
+                     </th>
+                     <th></th>
+                     <th></th>
+                  </tr>
+               </tbody>
+            </table>
+            <div class="alert alert-danger fade" id='add-alert'>
+            </div>
+         </div>
+      </div>
+      
+      <div class="modal fade" id="update-modal" role="dialog">
+         <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+               <div class="modal-body">
+                  <div class="input-group input-group-lg" id="inputs-update">
+                     <input type="text" class="form-control" disabled>
+                     <select autocomplete="off" class="form-control">
+
+                     </select>
+                     <select autocomplete="off" class="form-control">
+
+                     </select>
+                     <input type="text" class="form-control form-date" placeholder="hire date">
+                  </div>
+
+                  <div class="alert alert-danger fade" id='update-alert'>
+
+                  </div>
+               </div>
+               <div class="modal-footer">
+                  <form id="update-form" method="post">
+                     <button type="submit" class="btn btn-success">Update</button>
+                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+     
+      <div class="modal fade" id="delete-modal" role="dialog">
+         <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+               <div class="modal-body">
+                  <p>Are you sure to delete this record?</p>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" id="delete-btn" class="btn btn-danger" data-dismiss="modal">Delete</button>
+                  <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <div class="modal fade" id="info-modal" tabindex="-1" role="dialog">
+         <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+               <div id="info-modal-text" class="modal-body">
+
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-success" data-dismiss="modal" id="OK">Ok</button>
+               </div>
+            </div>
+         </div>
+      </div>
+
+   </body>
+</html>

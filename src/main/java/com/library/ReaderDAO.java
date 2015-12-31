@@ -6,7 +6,6 @@ import com.library.domain.Reader;
 import javax.ejb.Remote;
 import java.util.List;
 
-@Remote
 public interface ReaderDAO
 {
 

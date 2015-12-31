@@ -54,11 +54,17 @@ public class BookResource
 
     @DELETE
     @Path("/deleteBook")
+    @Produces(MediaType.TEXT_PLAIN)
     public Response deleteBook(@FormParam("idBook") long idBook)
     {
         Book book = new Book();
         book.setIdBook(idBook);
-        //sprawdzic czy posiada autorow bo pewnie wyrzuci bledy
+
+        if(bookManager.getBookByIdWithBooksAuthors(book).getBooksAuthors().size() > 0)
+            return Response.status(Response.Status.BAD_REQUEST).entity("Book has relation in BookAuthors table").build();
+
+        if(bookManager.getBookByIdWithHirings(book).getHirings().size() > 0)
+            return Response.status(Response.Status.BAD_REQUEST).entity("Book has relation in Hiring table").build();
 
         bookManager.deleteBook(book);
 
