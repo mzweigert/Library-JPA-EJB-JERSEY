@@ -3,6 +3,7 @@ package com.library.service;
 
 import com.library.ReaderDAO;
 import com.library.domain.Reader;
+import org.hibernate.Hibernate;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -34,20 +35,20 @@ public class ReaderManager implements ReaderDAO
     public Reader getReaderByIdWithHirings(Reader reader)
     {
         Reader readerWithHirings = em.find(Reader.class, reader.getIdReader());
-        readerWithHirings.getHirings();
+        Hibernate.initialize(readerWithHirings.getHirings());
 
         return readerWithHirings;
     }
 
     public Reader updateReader(Reader reader)
     {
-        return (Reader) em.merge(reader);
+        return em.merge(reader);
 
     }
 
     public void deleteReader(Reader reader)
     {
-        em.remove(reader);
+        em.remove(em.getReference(Reader.class, reader.getIdReader()));
     }
 
     public Reader addReader(Reader reader)

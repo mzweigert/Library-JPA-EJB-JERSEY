@@ -11,7 +11,7 @@ $(document).ready(function()
 
     $( '.form-date' ).datetimepicker( { format: 'YYYY-MM-DD' } );
 
-    doAjaxGet('getAllReaders', 'json').then(
+    doAjax('../rest/reader/getAllReaders', 'GET', 'JSON').then(
     function(response)
     {
         makeRowsInTable(response, $tbody);
@@ -26,7 +26,7 @@ $(document).ready(function()
     {
         if(typeof idReader != null && typeof idReader != 'undefined' )
         {
-            doAjaxPost('deleteReader', 'json', {idReader: idReader});
+            doAjax('../rest/reader/deleteReader', 'DELETE', '', {idReader: idReader}).success(function(response){ location.reload(true); });;
         }
     });
 
@@ -79,14 +79,15 @@ $(document).ready(function()
             }
             else
             {
-                doAjaxPost('updateReader', 'json',
+                doAjax('../rest/reader/updateReader', 'PUT', '',
                 {
                     idReader: newIdReader,
                     name: newName,
                     surname: newSurname,
                     joinDate: newJoinDate,
                     extraPoints: newExtraPoints
-                });
+
+                }).success(function(response){ location.reload(true); });
             }
             e.preventDefault();
         }
@@ -118,7 +119,8 @@ $(document).ready(function()
         }
         else
         {
-        	 doAjaxPost('addReader', 'json', {name: name, surname:surname, joinDate: joinDate, extraPoints: extraPoints});
+        	 doAjax('../rest/reader/addReader', 'POST', '' , {name: name, surname:surname, joinDate: joinDate, extraPoints: extraPoints})
+        	    .success(function(response){ location.reload(true); });
         }
     });
 

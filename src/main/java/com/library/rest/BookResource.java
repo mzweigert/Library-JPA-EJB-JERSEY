@@ -1,14 +1,10 @@
 package com.library.rest;
 
-import com.library.AuthorDAO;
 import com.library.BookDAO;
-import com.library.domain.Author;
 import com.library.domain.Book;
-import com.library.service.AuthorManager;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;

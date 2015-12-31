@@ -51,7 +51,7 @@ public class BookManager implements BookDAO
 
     public Book updateBook(Book book)
     {
-        return (Book) em.merge(book);
+        return em.merge(book);
     }
 
 
