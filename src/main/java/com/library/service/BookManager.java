@@ -2,7 +2,6 @@ package com.library.service;
 
 
 import com.library.BookDAO;
-import com.library.domain.Author;
 import com.library.domain.Book;
 import org.hibernate.Hibernate;
 

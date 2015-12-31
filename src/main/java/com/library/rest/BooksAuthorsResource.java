@@ -12,7 +12,6 @@ import javax.ejb.Stateless;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.sql.Date;
 import java.util.List;
 
 @Stateless
@@ -54,11 +53,6 @@ public class BooksAuthorsResource
     @Produces(MediaType.APPLICATION_JSON)
     public List<BooksAuthors> getAllBooksAuthors()
     {
-        Book book = bookManager.addBook(new Book("twarz", Date.valueOf("2015-01-01"), 1));
-        Author author = authorManager.addAuthor(new Author("JASIEK", "STASIEK"));
-
-        booksAuthorsManager.addBooksAuthors(new BooksAuthors(author, book));
-
         return booksAuthorsManager.getAllBooksAuthors();
     }
 

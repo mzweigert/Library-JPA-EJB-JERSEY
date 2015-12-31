@@ -1,10 +1,7 @@
 package com.library;
 
 import com.library.domain.Author;
-import com.library.domain.Book;
-import com.library.domain.BooksAuthors;
 
-import javax.ejb.Remote;
 import java.util.List;
 
 

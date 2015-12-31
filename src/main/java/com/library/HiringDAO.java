@@ -5,7 +5,6 @@ import com.library.domain.Book;
 import com.library.domain.Hiring;
 import com.library.domain.Reader;
 
-import javax.ejb.Remote;
 import java.util.List;
 
 public interface HiringDAO

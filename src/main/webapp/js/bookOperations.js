@@ -44,6 +44,7 @@ $(document).ready(function()
         $inputsUpdate.eq(1).val(title);
         $inputsUpdate.eq(2).val(relaseDate);
         $inputsUpdate.eq(3).val(relase);
+
     });
 
     $('#update-form').submit(function(e)

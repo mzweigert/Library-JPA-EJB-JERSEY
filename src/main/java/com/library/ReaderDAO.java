@@ -3,7 +3,6 @@ package com.library;
 
 import com.library.domain.Reader;
 
-import javax.ejb.Remote;
 import java.util.List;
 
 public interface ReaderDAO

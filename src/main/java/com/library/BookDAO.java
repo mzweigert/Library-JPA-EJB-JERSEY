@@ -2,7 +2,6 @@ package com.library;
 
 import com.library.domain.Book;
 
-import javax.ejb.Remote;
 import java.util.List;
 
 

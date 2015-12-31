@@ -7,8 +7,8 @@ import java.sql.Date;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "hiring.all", query = "Select h from Hiring h"),
-        @NamedQuery(name = "hiring.byIdReader", query = "Select h from Hiring h where h.reader = :idReader"),
-        @NamedQuery(name = "hiring.byIdBook", query = "Select h from Hiring h where h.book = :idBook")
+        @NamedQuery(name = "hiring.byIdReader", query = "Select h from Hiring h where h.reader.idReader = :idReader"),
+        @NamedQuery(name = "hiring.byIdBook", query = "Select h from Hiring h where h.book.idBook = :idBook")
 
 })
 public class Hiring implements Serializable

@@ -10,20 +10,20 @@ $(document).ready(function()
 
     $( '.form-date' ).datetimepicker( { format: 'YYYY-MM-DD' } );
 
-    doAjaxGet('getAllHirings', 'json').then(
+    doAjax('../rest/hiring/getAllHirings', 'GET', 'JSON', '').then(
     function(response)
     {
         makeRowsInTable(response, $tbody);
     });
 
-    doAjaxGet('getAllBooks', 'json').then(
+    doAjax('../rest/book/getAllBooks',  'GET', 'JSON', '').then(
     function(response)
     {
         createOptionSelect($('#select-book-add'), response);
         createOptionSelect($inputsUpdate.eq(1), response);
     });
 
-    doAjaxGet('getAllReaders', 'json').then(
+    doAjax('../rest/reader/getAllReaders',  'GET', 'JSON', '').then(
     function(response)
     {
         createOptionSelect($('#select-reader-add'), response);
@@ -39,7 +39,8 @@ $(document).ready(function()
     {
         if(typeof idHiring != null && typeof idHiring != 'undefined' )
         {
-            doAjaxPost('deleteHiring', 'json', {idHiring: idHiring});
+            doAjax('../rest/hiring/deleteHiring', 'DELETE', '', {idHiring: idHiring})
+                .success(function(response){ location.reload(true); });
         }
     });
 
@@ -69,7 +70,7 @@ $(document).ready(function()
             newHireDate = $inputsUpdate.eq(3).val();
         if(idHiring != '' && typeof idHiring != 'undefined' && idHiring == newIdHiring)
         {
-            if(newIdBook == idBook && idReader == newIdReader)
+            if(newIdBook == idBook && idReader == newIdReader && hireDate == newHireDate)
             {
                 $('#update-modal').modal('hide');
             }
@@ -80,7 +81,14 @@ $(document).ready(function()
             }
             else
             {
-                doAjaxPost('updateHiring', 'json', {idHiring: newIdHiring, idBook: newIdBook, idReader: newIdReader, hireDate: newHireDate});
+                doAjax('../rest/hiring/updateHiring', 'PUT', '',
+                {
+                    idHiring: newIdHiring,
+                    idBook: newIdBook,
+                    idReader: newIdReader,
+                    hireDate: newHireDate
+
+                 }).success(function(response){ location.reload(true); });
                 $('#update-modal').modal('hide');
             }
             e.preventDefault();
@@ -112,7 +120,8 @@ $(document).ready(function()
     	}
     	else
     	{
-    		doAjaxPost('addHiring', 'json', { idBook: idBook, idReader: idReader, hireDate: hireDate});
+    		doAjax('../rest/hiring/addHiring', 'POST', '', { idBook: idBook, idReader: idReader, hireDate: hireDate})
+    		    .success(function(response){ location.reload(true); });
     	}
     });
 

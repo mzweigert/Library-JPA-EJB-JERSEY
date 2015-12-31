@@ -47,7 +47,7 @@ public class HiringManager implements HiringDAO
 
     public void deleteHiring(Hiring hiring)
     {
-        em.remove(hiring);
+        em.remove(em.getReference(Hiring.class, hiring.getIdHiring()));
     }
 
     public Hiring addHiring(Hiring hiring)
