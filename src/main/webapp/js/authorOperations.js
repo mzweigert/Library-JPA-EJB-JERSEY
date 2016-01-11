@@ -21,7 +21,7 @@ $(document).ready(function()
     {
         if(typeof null != idAuthor && typeof 'undefined' != idAuthor )
         {
-            doAjax('../rest/author/deleteAuthor', 'DELETE', '', {idAuthor: idAuthor}).success(function(response){ location.reload(true); });
+            doAjax('../rest/author/deleteAuthor', 'DELETE', 'TEXT', {idAuthor: idAuthor}).success(function(response){ location.reload(true); });
         }
     });
     $tbody.on('click', '.update-row', function()
@@ -56,7 +56,7 @@ $(document).ready(function()
             }
             else
             {
-                 doAjax('../rest/author/updateAuthor', 'PUT', '', {idAuthor:idAuthor, name: newName, surname: newSurname}).success(
+                 doAjax('../rest/author/updateAuthor', 'PUT', 'JSON', {idAuthor:idAuthor, name: newName, surname: newSurname}).success(
                  function(response)
                  {
                      $('#update-modal').modal('hide');
@@ -82,7 +82,7 @@ $(document).ready(function()
     	}
     	else
     	{
-    		doAjax('../rest/author/addAuthor', 'POST', '', {name: name, surname: surname}).success(
+    		doAjax('../rest/author/addAuthor', 'POST', 'JSON', {name: name, surname: surname}).success(
             function(response)
             {
                 location.reload(true);

@@ -32,7 +32,8 @@ public class HiringResource
 
     @POST
     @Path("/addHiring")
-    public Response addHiring(@FormParam("idBook") long idBook,
+    @Produces(MediaType.APPLICATION_JSON)
+    public Hiring addHiring(@FormParam("idBook") long idBook,
                               @FormParam("idReader") long idReader,
                               @FormParam("hireDate") Date hireDate)
     {
@@ -45,10 +46,7 @@ public class HiringResource
         Reader reader = readerManager.getReaderById(readerById);
 
         Hiring hiring = new Hiring(book, reader, hireDate);
-
-        hiringManager.addHiring(hiring);
-
-        return Response.status(Response.Status.CREATED).build();
+        return hiringManager.addHiring(hiring);
     }
 
     @GET
@@ -61,7 +59,8 @@ public class HiringResource
 
     @PUT
     @Path("/updateHiring")
-    public Response updateHiring(@FormParam("idHiring") long idHiring,
+    @Produces(MediaType.APPLICATION_JSON)
+    public Hiring updateHiring(@FormParam("idHiring") long idHiring,
                                  @FormParam("idBook") long idBook,
                                  @FormParam("idReader") long idReader,
                                  @FormParam("hireDate") Date hireDate)
@@ -82,9 +81,7 @@ public class HiringResource
         hiring.setBook(book);
         hiring.setHireDate(hireDate);
 
-        hiringManager.updateHiring(hiring);
-
-        return Response.status(Response.Status.CREATED).build();
+        return hiringManager.updateHiring(hiring);
     }
 
     @DELETE

@@ -20,12 +20,11 @@ public class AuthorResource
 
     @POST
     @Path("/addAuthor")
-    public Response addAuthor(@FormParam("name") String name, @FormParam("surname") String surname)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Author addAuthor(@FormParam("name") String name, @FormParam("surname") String surname)
     {
         Author author = new Author(name, surname);
-        authorManager.addAuthor(author);
-
-        return Response.status(Response.Status.CREATED).build();
+        return authorManager.addAuthor(author);
     }
 
     @GET
@@ -38,14 +37,13 @@ public class AuthorResource
 
     @PUT
     @Path("/updateAuthor")
-    public Response updateAuthor(@FormParam("idAuthor") long idAuthor, @FormParam("name") String name, @FormParam("surname") String surname)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Author updateAuthor(@FormParam("idAuthor") long idAuthor, @FormParam("name") String name, @FormParam("surname") String surname)
     {
         Author author = new Author(name, surname);
         author.setIdAuthor(idAuthor);
 
-        authorManager.updateAuthor(author);
-
-        return Response.status(Response.Status.OK).build();
+        return authorManager.updateAuthor(author);
     }
 
     @DELETE

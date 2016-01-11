@@ -21,12 +21,11 @@ public class BookResource
 
     @POST
     @Path("/addBook")
-    public Response addBook(@FormParam("title") String title, @FormParam("relaseDate") Date relaseDate, @FormParam("relase") int relase)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Book addBook(@FormParam("title") String title, @FormParam("relaseDate") Date relaseDate, @FormParam("relase") int relase)
     {
         Book book = new Book(title, relaseDate, relase);
-        bookManager.addBook(book);
-
-        return Response.status(Response.Status.CREATED).build();
+        return bookManager.addBook(book);
     }
 
     @GET
@@ -39,13 +38,12 @@ public class BookResource
 
     @PUT
     @Path("/updateBook")
-    public Response updateBook(@FormParam("idBook")long idBook, @FormParam("title") String title, @FormParam("relaseDate") Date relaseDate, @FormParam("relase") int relase)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Book updateBook(@FormParam("idBook")long idBook, @FormParam("title") String title, @FormParam("relaseDate") Date relaseDate, @FormParam("relase") int relase)
     {
         Book book = new Book(title, relaseDate, relase);
         book.setIdBook(idBook);
-
-        bookManager.updateBook(book);
-        return Response.status(Response.Status.OK).build();
+        return bookManager.updateBook(book);
     }
 
     @DELETE

@@ -27,7 +27,7 @@ $(document).ready(function()
     {
         if(typeof idBook != null && typeof idBook != 'undefined')
         {
-            doAjax('../rest/book/deleteBook', 'DELETE', '', {idBook: idBook} ).success(function(response){ location.reload(true); });
+            doAjax('../rest/book/deleteBook', 'DELETE', 'TEXT', {idBook: idBook} ).success(function(response){ location.reload(true); });
         }
     });
 
@@ -78,7 +78,7 @@ $(document).ready(function()
             }
             else
             {
-                doAjax('../rest/book/updateBook', 'PUT', '', {idBook: newIdBook, title: newTitle, relaseDate: newRelaseDate, relase: newRelase})
+                doAjax('../rest/book/updateBook', 'PUT', 'JSON', {idBook: newIdBook, title: newTitle, relaseDate: newRelaseDate, relase: newRelase})
                     .success(function(response){ location.reload(true); });
                 $('#update-modal').modal('hide');
             }
@@ -111,7 +111,7 @@ $(document).ready(function()
         }
         else
         {
-        	doAjax('../rest/book/addBook', 'POST', '', { title: title, relaseDate: relaseDate, relase: relase})
+        	doAjax('../rest/book/addBook', 'POST', 'JSON', { title: title, relaseDate: relaseDate, relase: relase})
         	    .success(function(response){ location.reload(true); });
         }
     });

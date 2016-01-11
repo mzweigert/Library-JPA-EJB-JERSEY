@@ -39,7 +39,7 @@ $(document).ready(function()
     {
         if(typeof idHiring != null && typeof idHiring != 'undefined' )
         {
-            doAjax('../rest/hiring/deleteHiring', 'DELETE', '', {idHiring: idHiring})
+            doAjax('../rest/hiring/deleteHiring', 'DELETE', 'TEXT', {idHiring: idHiring})
                 .success(function(response){ location.reload(true); });
         }
     });
@@ -81,7 +81,7 @@ $(document).ready(function()
             }
             else
             {
-                doAjax('../rest/hiring/updateHiring', 'PUT', '',
+                doAjax('../rest/hiring/updateHiring', 'PUT', 'JSON',
                 {
                     idHiring: newIdHiring,
                     idBook: newIdBook,
@@ -120,7 +120,7 @@ $(document).ready(function()
     	}
     	else
     	{
-    		doAjax('../rest/hiring/addHiring', 'POST', '', { idBook: idBook, idReader: idReader, hireDate: hireDate})
+    		doAjax('../rest/hiring/addHiring', 'POST', 'JSON', { idBook: idBook, idReader: idReader, hireDate: hireDate})
     		    .success(function(response){ location.reload(true); });
     	}
     });

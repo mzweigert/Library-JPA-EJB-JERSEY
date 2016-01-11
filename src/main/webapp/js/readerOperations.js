@@ -26,7 +26,7 @@ $(document).ready(function()
     {
         if(typeof idReader != null && typeof idReader != 'undefined' )
         {
-            doAjax('../rest/reader/deleteReader', 'DELETE', '', {idReader: idReader}).success(function(response){ location.reload(true); });;
+            doAjax('../rest/reader/deleteReader', 'DELETE', 'TEXT', {idReader: idReader}).success(function(response){ location.reload(true); });;
         }
     });
 
@@ -79,7 +79,7 @@ $(document).ready(function()
             }
             else
             {
-                doAjax('../rest/reader/updateReader', 'PUT', '',
+                doAjax('../rest/reader/updateReader', 'PUT', 'JSON',
                 {
                     idReader: newIdReader,
                     name: newName,
@@ -119,7 +119,7 @@ $(document).ready(function()
         }
         else
         {
-        	 doAjax('../rest/reader/addReader', 'POST', '' , {name: name, surname:surname, joinDate: joinDate, extraPoints: extraPoints})
+        	 doAjax('../rest/reader/addReader', 'POST', 'JSON' , {name: name, surname:surname, joinDate: joinDate, extraPoints: extraPoints})
         	    .success(function(response){ location.reload(true); });
         }
     });

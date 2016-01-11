@@ -10,7 +10,8 @@ buildNumber.properties
 .mvn/timing.properties
 ### Java template
 *.class
-
+/.idea
+library.iml
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 

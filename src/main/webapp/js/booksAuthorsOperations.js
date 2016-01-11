@@ -35,7 +35,7 @@ $(document).ready(function()
      {
          if(typeof idBooksAuthors != null && typeof idBooksAuthors != 'undefined' )
          {
-             doAjax('../rest/booksAuthors/deleteBooksAuthors', 'DELETE', '', {idBooksAuthors: idBooksAuthors})
+             doAjax('../rest/booksAuthors/deleteBooksAuthors', 'DELETE', 'TEXT', {idBooksAuthors: idBooksAuthors})
                 .success(function(response){ location.reload(true); });
          }
      });
@@ -63,7 +63,7 @@ $(document).ready(function()
          {
              if(idAuthor != newIdAuthor || newIdBook != idBook )
              {
-                 doAjax('../rest/booksAuthors/updateBooksAuthors', 'PUT', '', {idBooksAuthors: newIdBooksAuthors, idAuthor: newIdAuthor, idBook: newIdBook })
+                 doAjax('../rest/booksAuthors/updateBooksAuthors', 'PUT', 'JSON', {idBooksAuthors: newIdBooksAuthors, idAuthor: newIdAuthor, idBook: newIdBook })
                     .success(function(response){ location.reload(true); });
              }
              $('#update-modal').modal('hide');
@@ -90,7 +90,7 @@ $(document).ready(function()
      	}
      	else
      	{
-     		doAjax('../rest/booksAuthors/addBooksAuthors', 'POST', '', {idAuthor: idAuthor, idBook: idBook})
+     		doAjax('../rest/booksAuthors/addBooksAuthors', 'POST', 'JSON', {idAuthor: idAuthor, idBook: idBook})
      		    .success(function(response){ location.reload(true); });
      	}
      });

@@ -31,7 +31,8 @@ public class BooksAuthorsResource
 
     @POST
     @Path("/addBooksAuthors")
-    public Response addBooksAuthors(@FormParam("idAuthor") long idAuthor, @FormParam("idBook") long idBook)
+    @Produces(MediaType.APPLICATION_JSON)
+    public BooksAuthors addBooksAuthors(@FormParam("idAuthor") long idAuthor, @FormParam("idBook") long idBook)
     {
         Book bookById = new Book();
         bookById.setIdBook(idBook);
@@ -42,10 +43,7 @@ public class BooksAuthorsResource
         Book book = bookManager.getBookById(bookById);
 
         BooksAuthors booksAuthors = new BooksAuthors(author, book);
-
-        booksAuthorsManager.addBooksAuthors(booksAuthors);
-
-        return Response.status(Response.Status.CREATED).build();
+        return booksAuthorsManager.addBooksAuthors(booksAuthors);
     }
 
     @GET
@@ -58,7 +56,8 @@ public class BooksAuthorsResource
 
     @PUT
     @Path("/updateBooksAuthors")
-    public Response updateBooksAuthors(@FormParam("idBooksAuthors") long idBooksAuthors, @FormParam("idAuthor") long idAuthor, @FormParam("idBook") long idBook)
+    @Produces(MediaType.APPLICATION_JSON)
+    public BooksAuthors updateBooksAuthors(@FormParam("idBooksAuthors") long idBooksAuthors, @FormParam("idAuthor") long idAuthor, @FormParam("idBook") long idBook)
     {
         Book bookById = new Book();
         bookById.setIdBook(idBook);
@@ -74,10 +73,7 @@ public class BooksAuthorsResource
 
         booksAuthors.setAuthor(author);
         booksAuthors.setBook(book);
-
-        booksAuthorsManager.updateBooksAuthors(booksAuthors);
-
-        return Response.status(Response.Status.CREATED).build();
+        return booksAuthorsManager.updateBooksAuthors(booksAuthors);
     }
 
     @DELETE

@@ -21,15 +21,14 @@ public class ReaderResource
 
     @POST
     @Path("/addReader")
-    public Response addReader(@FormParam("name") String name,
+    @Produces(MediaType.APPLICATION_JSON)
+    public Reader addReader(@FormParam("name") String name,
                               @FormParam("surname") String surname,
                               @FormParam("joinDate") Date joinDate,
                               @FormParam("extraPoints") int extraPoints)
     {
         Reader reader = new Reader(name, surname, joinDate, extraPoints);
-        readerManager.addReader(reader);
-
-        return Response.status(Response.Status.CREATED).build();
+        return readerManager.addReader(reader);
     }
 
     @GET
@@ -42,7 +41,8 @@ public class ReaderResource
 
     @PUT
     @Path("/updateReader")
-    public Response updateReader(@FormParam("idReader") long idReader,
+    @Produces(MediaType.APPLICATION_JSON)
+    public Reader updateReader(@FormParam("idReader") long idReader,
                                  @FormParam("name") String name,
                                  @FormParam("surname") String surname,
                                  @FormParam("joinDate") Date joinDate,
@@ -50,9 +50,7 @@ public class ReaderResource
     {
         Reader reader = new Reader(name, surname, joinDate, extraPoints);
         reader.setIdReader(idReader);
-
-        readerManager.updateReader(reader);
-        return Response.status(Response.Status.OK).build();
+        return readerManager.updateReader(reader);
     }
 
     @DELETE
